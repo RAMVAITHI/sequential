@@ -1,0 +1,22 @@
+
+module piso (clk, load, data_in, data_out);
+  input clk, load;
+  input [3:0]data_in;
+  output data_out;
+
+  reg [3:0]q= 0;
+  
+  always @ (posedge clk) 
+  begin
+    if (~load)
+      q <= data_in;
+    else
+    begin 
+      q[0]=q[1];
+      q[1]=q[2];
+      q[2]=q[3];
+      q[3]=1'bx;
+    end
+  end
+  assign data_out= q[0]; 
+endmodule

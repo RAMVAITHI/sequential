@@ -1,0 +1,18 @@
+module d_fftb;
+  reg d,clk=0,res;
+  wire q,qbar;
+  d_ff t1(.d(d),.q(q),.qbar(qbar),.clk(clk),.res(res));
+initial
+  begin
+	$dumpfile("waveform.vcd");
+	$dumpvars;
+    clk= 0;
+    res=1;
+    d=0;
+    #5 res=0;
+    $monitor($time,"\tclk=%b\t,reset=%b\t.q=%b",clk,res,d,q);
+    #160$finish;
+  end
+  always#5 clk=~clk;
+  always#40 d=~d;
+endmodule

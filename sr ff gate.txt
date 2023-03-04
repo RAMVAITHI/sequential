@@ -1,0 +1,14 @@
+module srff_(q, qb, s, r,rst, clk);
+
+input s,r,rst,clk; 
+output q, qb;
+
+wire nand1_out; 
+wire nand2_out; 
+
+nand (nand1_out,clk,s); 
+nand (nand2_out,clk,r); 
+nand (q,nand1_out,qb);
+nand (qb,nand2_out,q);
+
+endmodule

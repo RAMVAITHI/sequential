@@ -1,0 +1,11 @@
+module d_ff(q,res,qbar,d,clk);
+input d,clk,res; 
+output q, qbar; 
+  wire x,y;
+not not1(dbar,d); 
+nand nand1(x,clk,d); 
+nand nand2(y,clk,dbar); 
+nand nand3(q,qbar,y); 
+nand nand4(qbar,q,x); 
+endmodule
+
